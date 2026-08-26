@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="libraryApp">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Library Management System</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+</head>
+
+
+<body ng-controller="LibraryController">
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <i class="fa-solid fa-book-open"></i>
+
+        <span>Library Management System</span>
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a class="active">
+            <i class="fa-solid fa-house"></i>
+            Dashboard
+        </a>
+
+        <a>
+            <i class="fa-solid fa-book"></i>
+            Books
+        </a>
+
+        <a>
+            <i class="fa-solid fa-circle-info"></i>
+            About
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="container">
+
+
+    <!-- Welcome -->
+
+    <section class="welcome">
+
+        <h1>
+            Welcome to Library Management System
+        </h1>
+
+        <p>
+            Manage your library books easily using AngularJS
+        </p>
+
+    </section>
+
+
+
+    <!-- ================= STATISTICS ================= -->
+
+    <section class="stats">
+
+        <div class="stat-card blue">
+
+            <div class="stat-icon">
+                <i class="fa-solid fa-book"></i>
+            </div>
+
+            <div>
+
+                <p>Total Books</p>
+
+                <h2>
+                    {{books.length}}
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card green">
+
+            <div class="stat-icon">
+                <i class="fa-solid fa-book-open"></i>
+            </div>
+
+            <div>
+
+                <p>Available Books</p>
+
+                <h2>
+                    {{books.length}}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= ADD / EDIT + DATA BINDING ================= -->
+
+    <section class="main-area">
+
+
+        <!-- ================= BOOK FORM ================= -->
+
+        <div class="card form-card">
+
+            <h2>
+
+                <i class="fa-solid"
+                   ng-class="editing ? 'fa-pen' : 'fa-plus'">
+                </i>
+
+                {{editing ? 'Edit Book' : 'Add New Book'}}
+
+            </h2>
+
+
+            <form name="bookForm"
+                  ng-submit="saveBook()"
+                  novalidate>
+
+
+                <!-- Book ID -->
+
+                <div class="form-group">
+
+                    <label>
+                        Book ID <span>*</span>
+                    </label>
+
+                    <input type="text"
+                           name="bookId"
+                           ng-model="book.id"
+                           placeholder="Enter Book ID"
+                           required>
+
+                    <small class="error"
+                           ng-show="bookForm.bookId.$touched &&
+                                    bookForm.bookId.$error.required">
+
+                        Book ID is required.
+
+                    </small>
+
+                </div>
+
+
+
+                <!-- Book Name -->
+
+                <div class="form-group">
+
+                    <label>
+                        Book Name <span>*</span>
+                    </label>
+
+                    <input type="text"
+                           name="bookName"
+                           ng-model="book.name"
+                           placeholder="Enter Book Name"
+                           required>
+
+                    <small class="error"
+                           ng-show="bookForm.bookName.$touched &&
+                                    bookForm.bookName.$error.required">
+
+                        Book Name is required.
+
+                    </small>
+
+                </div>
+
+
+
+                <!-- Author -->
+
+                <div class="form-group">
+
+                    <label>
+                        Author <span>*</span>
+                    </label>
+
+                    <input type="text"
+                           name="author"
+                           ng-model="book.author"
+                           placeholder="Enter Author Name"
+                           required>
+
+                    <small class="error"
+                           ng-show="bookForm.author.$touched &&
+                                    bookForm.author.$error.required">
+
+                        Author is required.
+
+                    </small>
+
+                </div>
+
+
+
+                <!-- Category -->
+
+                <div class="form-group">
+
+                    <label>
+                        Category <span>*</span>
+                    </label>
+
+                    <select name="category"
+                            ng-model="book.category"
+                            required>
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        <option value="Programming">
+                            Programming
+                        </option>
+
+                        <option value="Database">
+                            Database
+                        </option>
+
+                        <option value="Networking">
+                            Networking
+                        </option>
+
+                        <option value="Science">
+                            Science
+                        </option>
+
+                        <option value="Novel">
+                            Novel
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Price -->
+
+                <div class="form-group">
+
+                    <label>
+                        Price (₹) <span>*</span>
+                    </label>
+
+                    <input type="number"
+                           name="price"
+                           ng-model="book.price"
+                           placeholder="Enter Price"
+                           required>
+
+                </div>
+
+
+
+                <!-- Buttons -->
+
+                <div class="buttons">
+
+                    <button type="submit"
+                            class="add-btn"
+                            ng-disabled="bookForm.$invalid">
+
+                        <i class="fa-solid"
+                           ng-class="editing ? 'fa-save' : 'fa-plus'">
+                        </i>
+
+                        {{editing ? 'Update Book' : 'Add Book'}}
+
+                    </button>
+
+
+                    <button type="button"
+                            class="reset-btn"
+                            ng-click="resetForm()">
+
+                        <i class="fa-solid fa-rotate-left"></i>
+
+                        {{editing ? 'Cancel' : 'Reset'}}
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+
+        <!-- ================= LIVE DATA BINDING ================= -->
+
+        <div class="card preview-card">
+
+            <h2>
+
+                <i class="fa-solid fa-link"></i>
+
+                Live Data Binding
+
+            </h2>
+
+
+            <p class="preview-info">
+
+                Type in the form and see the data update automatically.
+
+            </p>
+
+
+            <div class="preview-box">
+
+
+                <div class="preview-row">
+
+                    <strong>Book ID:</strong>
+
+                    <span>
+                        {{book.id || 'Not entered'}}
+                    </span>
+
+                </div>
+
+
+                <div class="preview-row">
+
+                    <strong>Book Name:</strong>
+
+                    <span>
+                        {{book.name || 'Not entered'}}
+                    </span>
+
+                </div>
+
+
+                <div class="preview-row">
+
+                    <strong>Author:</strong>
+
+                    <span>
+                        {{book.author || 'Not entered'}}
+                    </span>
+
+                </div>
+
+
+                <div class="preview-row">
+
+                    <strong>Category:</strong>
+
+                    <span>
+                        {{book.category || 'Not selected'}}
+                    </span>
+
+                </div>
+
+
+                <div class="preview-row">
+
+                    <strong>Price:</strong>
+
+                    <span>
+                        {{book.price ? '₹' + book.price : 'Not entered'}}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="binding-message">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                This is AngularJS two-way data binding using
+                <strong>ng-model</strong>.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= BOOK LIST ================= -->
+
+    <section class="card book-list-card">
+
+
+        <div class="list-header">
+
+            <h2>
+
+                <i class="fa-solid fa-list"></i>
+
+                Book List
+
+            </h2>
+
+
+            <div class="search">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input type="text"
+                       ng-model="searchText"
+                       placeholder="Search books...">
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= TABLE ================= -->
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Book Name</th>
+
+                        <th>Author</th>
+
+                        <th>Category</th>
+
+                        <th>Price (₹)</th>
+
+                        <th>Status</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr ng-repeat="item in books | filter:searchText">
+
+                        <td>
+                            {{item.id}}
+                        </td>
+
+                        <td>
+                            {{item.name}}
+                        </td>
+
+                        <td>
+                            {{item.author}}
+                        </td>
+
+                        <td>
+                            {{item.category}}
+                        </td>
+
+                        <td>
+                            {{item.price}}
+                        </td>
+
+                        <td>
+
+                            <span class="status available">
+
+                                Available
+
+                            </span>
+
+                        </td>
+
+                        <td class="actions">
+
+
+                            <!-- EDIT -->
+
+                            <button class="edit-btn"
+                                    title="Edit Book"
+                                    ng-click="editBook(item)">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+
+                            <!-- DELETE -->
+
+                            <button class="delete-btn"
+                                    title="Delete Book"
+                                    ng-click="deleteBook(item)">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr ng-if="books.length === 0">
+
+                        <td colspan="7"
+                            class="no-data">
+
+                            No books available.
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+
+                <tfoot>
+
+                    <tr>
+
+                        <td colspan="7">
+
+                            <strong>
+                                Total Books: {{books.length}}
+                            </strong>
+
+                        </td>
+
+                    </tr>
+
+                </tfoot>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    © 2026 Library Management System |
+
+    Built with
+
+    <span>AngularJS</span>
+
+</footer>
+
+
+
+<script src="app.js"></script>
+
+</body>
+
+</html>

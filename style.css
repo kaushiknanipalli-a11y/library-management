@@ -1,0 +1,845 @@
+* {
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+}
+
+
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #f4f7fb;
+
+    color: #10213a;
+
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+
+    height: 64px;
+
+    background: #061c35;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 35px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+
+}
+
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 23px;
+
+    font-weight: bold;
+
+}
+
+
+.logo i {
+
+    font-size: 30px;
+
+}
+
+
+.nav-links {
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+
+.nav-links a {
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 0 20px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+}
+
+
+.nav-links a:hover,
+
+.nav-links a.active {
+
+    background: #0867d8;
+
+}
+
+
+/* ================= CONTAINER ================= */
+
+.container {
+
+    max-width: 1250px;
+
+    margin: auto;
+
+    padding: 25px;
+
+}
+
+
+/* ================= WELCOME ================= */
+
+.welcome {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+
+}
+
+
+.welcome h1 {
+
+    font-size: 31px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.welcome p {
+
+    color: #64748b;
+
+    font-size: 16px;
+
+}
+
+
+/* ================= STATISTICS ================= */
+
+.stats {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.stat-card {
+
+    min-height: 110px;
+
+    border-radius: 7px;
+
+    padding: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    border: 1px solid;
+
+}
+
+
+.stat-icon {
+
+    font-size: 40px;
+
+}
+
+
+.stat-card p {
+
+    margin-bottom: 7px;
+
+    font-size: 15px;
+
+}
+
+
+.stat-card h2 {
+
+    font-size: 30px;
+
+}
+
+
+.blue {
+
+    color: #0867d8;
+
+    background: #edf4ff;
+
+    border-color: #8bb8f5;
+
+}
+
+
+.green {
+
+    color: #149447;
+
+    background: #effbf2;
+
+    border-color: #98d8ab;
+
+}
+
+
+/* ================= MAIN AREA ================= */
+
+.main-area {
+
+    display: grid;
+
+    grid-template-columns: 390px 1fr;
+
+    gap: 20px;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* ================= CARD ================= */
+
+.card {
+
+    background: white;
+
+    border: 1px solid #dce3eb;
+
+    border-radius: 7px;
+
+    padding: 20px;
+
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+
+}
+
+
+.card h2 {
+
+    font-size: 19px;
+
+    color: #0867d8;
+
+    margin-bottom: 20px;
+
+}
+
+
+.card h2 i {
+
+    margin-right: 7px;
+
+}
+
+
+/* ================= FORM ================= */
+
+.form-group {
+
+    margin-bottom: 14px;
+
+}
+
+
+.form-group label {
+
+    display: block;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    margin-bottom: 6px;
+
+}
+
+
+.form-group label span {
+
+    color: red;
+
+}
+
+
+input,
+
+select {
+
+    width: 100%;
+
+    height: 38px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 5px;
+
+    padding: 0 11px;
+
+    font-size: 14px;
+
+    background: white;
+
+}
+
+
+input:focus,
+
+select:focus {
+
+    outline: none;
+
+    border-color: #0867d8;
+
+    box-shadow: 0 0 0 2px rgba(8,103,216,0.1);
+
+}
+
+
+/* ================= ERROR ================= */
+
+.error {
+
+    display: block;
+
+    color: #dc2626;
+
+    margin-top: 5px;
+
+    font-size: 12px;
+
+}
+
+
+/* ================= BUTTONS ================= */
+
+.buttons {
+
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 20px;
+
+}
+
+
+.buttons button {
+
+    border: none;
+
+    border-radius: 5px;
+
+    padding: 10px 17px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+}
+
+
+.add-btn {
+
+    background: #0867d8;
+
+    color: white;
+
+}
+
+
+.add-btn:hover {
+
+    background: #0756b4;
+
+}
+
+
+.add-btn:disabled {
+
+    background: #9dbce0;
+
+    cursor: not-allowed;
+
+}
+
+
+.reset-btn {
+
+    background: #e2e8f0;
+
+    color: #10213a;
+
+}
+
+
+/* ================= PREVIEW ================= */
+
+.preview-card h2 {
+
+    color: #7138c9;
+
+}
+
+
+.preview-info {
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.preview-box {
+
+    border: 1px solid #ddd6fe;
+
+    background: #faf7ff;
+
+    border-radius: 6px;
+
+    padding: 15px;
+
+}
+
+
+.preview-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 12px 5px;
+
+    border-bottom: 1px solid #e9e3f8;
+
+    font-size: 14px;
+
+}
+
+
+.preview-row:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.preview-row strong {
+
+    color: #334155;
+
+}
+
+
+.preview-row span {
+
+    color: #7138c9;
+
+    font-weight: bold;
+
+}
+
+
+.binding-message {
+
+    margin-top: 15px;
+
+    background: #ecfdf5;
+
+    border: 1px solid #a7f3d0;
+
+    color: #047857;
+
+    padding: 12px;
+
+    border-radius: 5px;
+
+    font-size: 13px;
+
+}
+
+
+.binding-message i {
+
+    margin-right: 5px;
+
+}
+
+
+/* ================= BOOK LIST ================= */
+
+.book-list-card {
+
+    margin-bottom: 25px;
+
+}
+
+
+.list-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+
+}
+
+
+.list-header h2 {
+
+    margin-bottom: 0;
+
+}
+
+
+.search {
+
+    width: 270px;
+
+    height: 38px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 5px;
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+
+.search i {
+
+    padding-left: 11px;
+
+    color: #64748b;
+
+}
+
+
+.search input {
+
+    border: none;
+
+    outline: none;
+
+}
+
+
+/* ================= TABLE ================= */
+
+.table-wrapper {
+
+    overflow-x: auto;
+
+}
+
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-size: 14px;
+
+}
+
+
+thead {
+
+    background: #061c35;
+
+    color: white;
+
+}
+
+
+th {
+
+    padding: 13px 11px;
+
+    text-align: left;
+
+}
+
+
+td {
+
+    padding: 12px 11px;
+
+    border-bottom: 1px solid #e2e8f0;
+
+}
+
+
+tbody tr:hover {
+
+    background: #f8fafc;
+
+}
+
+
+tfoot {
+
+    background: #f8fafc;
+
+}
+
+
+tfoot td {
+
+    padding: 13px;
+
+}
+
+
+.no-data {
+
+    text-align: center;
+
+    color: #64748b;
+
+    padding: 25px;
+
+}
+
+
+/* ================= EDIT / DELETE ================= */
+
+.actions {
+
+    white-space: nowrap;
+
+}
+
+
+.actions button {
+
+    width: 36px;
+
+    height: 32px;
+
+    border: none;
+
+    border-radius: 4px;
+
+    color: white;
+
+    cursor: pointer;
+
+    margin-right: 5px;
+
+}
+
+
+.edit-btn {
+
+    background: #0867d8;
+
+}
+
+
+.edit-btn:hover {
+
+    background: #0756b4;
+
+}
+
+
+.delete-btn {
+
+    background: #dc2626;
+
+}
+
+
+.delete-btn:hover {
+
+    background: #b91c1c;
+
+}
+
+
+/* ================= STATUS ================= */
+
+.status {
+
+    display: inline-block;
+
+    padding: 4px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+}
+
+
+.available {
+
+    color: #15803d;
+
+    background: #dcfce7;
+
+    border: 1px solid #86efac;
+
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+
+    background: #061c35;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 16px;
+
+    font-size: 13px;
+
+}
+
+
+footer span {
+
+    color: #ffd400;
+
+    font-weight: bold;
+
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 900px) {
+
+    .navbar {
+
+        height: auto;
+
+        padding: 15px;
+
+        flex-direction: column;
+
+        gap: 15px;
+
+    }
+
+
+    .nav-links {
+
+        height: 45px;
+
+    }
+
+
+    .main-area {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+@media(max-width: 600px) {
+
+    .container {
+
+        padding: 15px;
+
+    }
+
+
+    .stats {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .list-header {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 12px;
+
+    }
+
+
+    .search {
+
+        width: 100%;
+
+    }
+
+
+    .logo {
+
+        font-size: 18px;
+
+    }
+
+}
